@@ -1,4 +1,5 @@
 ## load package and clear environment for data processing
+library(data.table)
 library(lubridate)
 library(dplyr)
 rm(list=ls())
