@@ -19,15 +19,24 @@ if (!file.exists(FileName2)) {
         unzip(FileName1, overwrite=TRUE)
 }
 
-## Read in complete dataset, select rows that match the 2 day period requirement, then
-## add a new column by changing to proper POIXct time format with lubridate package and 
-## finally rearrange the column so that the properly formatted time file replaces the
-## original Date and Time column
-Data <- tbl_df(read.table(FileName2, header=TRUE, sep=";", numerals="no.loss",
-                          na.strings=c("NA","-","?"), colClasses=CC, 
-                          strip.white=TRUE)) %>%
-        filter(Date == "1/2/2007" | Date== "2/2/2007") %>%
-        mutate(DateTime = dmy_hms(paste(Date, Time))) %>%
+## Old method which takes around 18 seconds to complete, just for reference
+##
+## Data <- tbl_df(read.table(FileName2, header=TRUE, sep=";", numerals="no.loss",
+##                          na.strings=c("NA","-","?"), colClasses=CC, 
+##                          strip.white=TRUE)) %>%
+##        filter(Date == "1/2/2007" | Date== "2/2/2007") %>%
+##        mutate(DateTime = dmy_hms(paste(Date, Time))) %>%
+##        select(DateTime, 3:9)
+
+## Using data.table package fread to read in only the 2 day period section from file
+## then add the column names manually, then use dplyr package and lubridate package
+## to add a new column of proper date time then delete the old Date and Time column
+Data <- fread(FileName2, sep=";", na.strings="?", colClasses=CC, skip="1/2/2007",
+              nrow=2*24*60)
+setnames(Data,c("Date","Time","Global_active_power","Global_reactive_power",
+                "Voltage","Global_intensity","Sub_metering_1", "Sub_metering_2",
+                "Sub_metering_3"))
+Data <- mutate(Data, DateTime = dmy_hms(paste(Date, Time))) %>%
         select(DateTime, 3:9)
 
 ## open png file device then Plot the graph
