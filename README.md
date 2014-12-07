@@ -31,10 +31,10 @@ be automatically wiped clean when running the script).
 
 4. R script files are already saved in current working directory, if not, please right 
 click on the following link and save them to corrent working directory.
-* [plot1.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot1.R) 
-* [plot2.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot2.R) 
-* [plot3.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot3.R) 
-* [plot4.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot4.R) 
+[plot1.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot1.R), 
+[plot2.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot2.R),  
+[plot3.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot3.R),  
+[plot4.R](https://raw.githubusercontent.com/courseramchen2k2/ExData_Plotting1/master/plot4.R) 
 
 ###Automatic method
 -------------------
